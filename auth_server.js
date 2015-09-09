@@ -19,4 +19,5 @@ app.use(expressSession({
     db: new mongoStore({mongooseConnection: mongoose.connection})
 }));
 require('./routes')(app);
+require('./google_auth')(app);
 app.listen(8080);
