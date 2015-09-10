@@ -5,9 +5,11 @@
 </head>
 <body>
     <h2>Google Authentication Info </h2>
-    <p>ID: <%= user.identifier</p>
+    <p>ID: <%= user._json.image.url %></p>
+    <p>Gender: <%= user.gender %></p>
     <p>Name: <%= user.displayName %></p>
-    <p> Email: <%= user.emails[0].value ></p>
-    <a href="/logout">Logout</a>
+    <p> Email: <%= user.emails %></p>
+    <img src=" <%= user._json.image.url %>">
+    <a href="/logout">Logouttt</a>
 </body>
 </html>

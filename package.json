@@ -20,6 +20,7 @@
     "ejs": "^2.3.4",
     "express": "^4.0.0",
     "express-session": "^1.11.3",
+    "grunt": "^0.4.5",
     "mongodb": "^2.0.40",
     "mongoose": "^3.8.8",
     "passport": "^0.2.0",
@@ -27,5 +28,9 @@
     "passport-google": "^0.3.0",
     "passport-google-oauth": "^0.2.0",
     "passport-twitter": "^1.0.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
+
   }
 }

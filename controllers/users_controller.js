@@ -90,3 +90,17 @@ exports.deleteUser = function (req, res) {
             }
         });
 };
+exports.findOrCreate = function (req, res) {
+    console.log("Hit the mongoose method");
+    User.find({_id: req.session.user})
+        .exec(function (err, user) {
+            if (user) {
+                req.session.user = user;
+
+            } else {
+                User.save(user);
+
+            }
+            res.redirect('/');
+        });
+};
