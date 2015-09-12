@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var masterUsr = require('./controllers/master_usr_controller');
 passport.use(new GoogleStrategy({
         clientID: "395625805842-io9psp81i1nikne6aaphq60deh6h2h42.apps.googleusercontent.com",
         clientSecret: "ir4rGCEPbdAuuatqhRSAMQmY",
@@ -12,17 +13,21 @@ passport.use(new GoogleStrategy({
         //User.findOrCreate({ googleId: profile.id }, function (err, user) {
         //    return done(err, user);
         //});
+        //console.log(profile);
+        //console.log(profile._json.organizations);
+        //console.log(profile._json.placesLived);
+        masterUsr.saveGoogleMasterUser(profile);
         return done(null, profile);
 
 
     }
 ));
 passport.serializeUser(function (user, done) {
-    console.log(user);
+    //console.log(user);
     done(null, user);
 });
 passport.deserializeUser(function (obj, done) {
-    console.log(obj);
+    //console.log(obj);
     done(null, obj);
 });
 module.exports = function (app) {
@@ -37,12 +42,8 @@ module.exports = function (app) {
         passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login' }));
 
     app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/login', successRedirect: '/ginfo' }),
-        function(req, res) {
-            console.log(res);
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
+        passport.authenticate('google', { failureRedirect: '/login', successRedirect: '/ginfo' })
+        );
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/login');

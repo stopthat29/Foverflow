@@ -3,9 +3,9 @@
  */
 var express = require('express');
 module.exports = function(app){
-    var photos = require('./controllers/photos_controller');
-    var comments = require('./controllers/comments_controller');
-    var pages = require('./controllers/pages_controller');
+    //var photos = require('./controllers/photos_controller');
+    //var comments = require('./controllers/comments_controller');
+    //var pages = require('./controllers/pages_controller');
     app.use('/static', express.static('../static')).
         use('/images', express.static('../images')).
         use('/lib', express.static('../lib'));
@@ -13,10 +13,10 @@ module.exports = function(app){
     app.get('/', function (req, res) {
         res.render('photos');
     });
-    app.get('/photos', photos.getPhotos);
-    app.get('/photo', photos.getPhoto);
-    app.get('/pages', pages.getPage);
-    app.get('/comments/get', comments.getComment);
-    app.get('/comments/add', comments.addComment);
+    //app.get('/photos', photos.getPhotos);
+    //app.get('/photo', photos.getPhoto);
+    //app.get('/pages', pages.getPage);
+    //app.get('/comments/get', comments.getComment);
+    //app.get('/comments/add', comments.addComment);
 
 }
